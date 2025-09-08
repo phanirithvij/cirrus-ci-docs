@@ -641,7 +641,7 @@ Resources:
       ClientIdList:
         - sts.amazonaws.com
       ThumbprintList: # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
-        - 46b4c330c67f24d6f11b5753394ecbe1e479cf29
+        - a5fafbb472b2e860bd74f0fcc53162cc5e71c803
 
 Outputs:
   Role:
