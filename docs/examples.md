@@ -1200,7 +1200,7 @@ Here is an example of a `.cirrus.yml` to run tests against the latest stable and
 
     ```yaml
     freebsd_instance:
-      image-family: freebsd-14-0
+      image-family: freebsd-14-3
 
     task:
       name: cargo test (stable)

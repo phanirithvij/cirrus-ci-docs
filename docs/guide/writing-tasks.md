@@ -573,50 +573,50 @@ ignored.
 
 Also some default environment variables are pre-defined:
 
-Name | Value / Description
----  | ---
-CI | true
-CIRRUS_CI | true
-CI_NODE_INDEX | Index of the current task within `CI_NODE_TOTAL` tasks
-CI_NODE_TOTAL | Total amount of unique tasks for a given `CIRRUS_BUILD_ID` build
-CONTINUOUS_INTEGRATION | `true`
-CIRRUS_API_CREATED | `true` if the current build was created through the [API](../api.md).
-CIRRUS_BASE_BRANCH | Base branch name if current build was triggered by a PR. For example `master`
-CIRRUS_BASE_SHA | Base SHA if current build was triggered by a PR
-CIRRUS_BRANCH | Branch name. For example `my-feature`
-CIRRUS_BUILD_ID | Unique build ID
-CIRRUS_CHANGE_IN_REPO | Git SHA
-CIRRUS_CHANGE_MESSAGE | Commit message or PR title and description, depending on trigger event (Non-PRs or PRs respectively).
-CIRRUS_CHANGE_TITLE | First line of `CIRRUS_CHANGE_MESSAGE`
-CIRRUS_CPU | Amount of CPUs requested by the task. `CIRRUS_CPU` value is integer and rounded up for tasks that requested non-interger amount of CPUs. 
-CIRRUS_CRON | [Cron Build](#cron-builds) name configured in the repository settings if this build was triggered by Cron. For example, `nightly`.
-CIRRUS_DEFAULT_BRANCH | Default repository branch name. For example `master`
-CIRRUS_DOCKER_CONTEXT | Docker build's context directory to use for [Dockerfile as a CI environment](docker-builder-vm.md#dockerfile-as-a-ci-environment). Defaults to project's root directory.
-CIRRUS_LAST_GREEN_BUILD_ID | The build id of the last successful build on the same branch at the time of the current build creation.
-CIRRUS_LAST_GREEN_CHANGE | Corresponding to `CIRRUS_LAST_GREEN_BUILD_ID` SHA (used in [`changesInclude`](#supported-functions) and [`changesIncludeOnly`](#supported-functions) functions).
-CIRRUS_PR | PR number if current build was triggered by a PR. For example `239`.
-CIRRUS_PR_DRAFT | `true` if current build was triggered by a Draft PR.
-CIRRUS_PR_TITLE | Title of a corresponding PR if any.
-CIRRUS_PR_BODY | Body of a corresponding PR if any.
-CIRRUS_PR_LABELS | comma separated list of PR's labels if current build was triggered by a PR.
-CIRRUS_TAG | Tag name if current build was triggered by a new tag. For example `v1.0`
-CIRRUS_OIDC_TOKEN | OpenID Connect Token issued by `https://oidc.cirrus-ci.com` with audience set to `https://cirrus-ci.com/github/$CIRRUS_REPO_OWNER` (can be changed via `$CIRRUS_OIDC_TOKEN_AUDIENCE`). Please refer to a [dedicated section below](#internals-of-openid-connect-tokens) for in-depth details.
-CIRRUS_OS, OS | Host OS. Either `linux`, `windows` or `darwin`.
-CIRRUS_TASK_NAME | Task name
-CIRRUS_TASK_NAME_ALIAS | Task name `alias` if any.
-CIRRUS_TASK_ID | Unique task ID
-CIRRUS_RELEASE | GitHub Release id if current tag was created for a release. Handy for [uploading release assets](../examples.md#release-assets).
-CIRRUS_REPO_CLONE_TOKEN | Temporary GitHub access token to perform a clone.
-CIRRUS_REPO_NAME | Repository name. For example `my-project`
-CIRRUS_REPO_OWNER | Repository owner (an organization or a user). For example `my-organization`
-CIRRUS_REPO_FULL_NAME | Repository full name/slug. For example `my-organization/my-project`
-CIRRUS_REPO_CLONE_URL | URL used for cloning. For example `https://github.com/my-organization/my-project.git`
-CIRRUS_USER_COLLABORATOR | `true` if a user initialized a build is already a contributor to the repository. `false` otherwise.
-CIRRUS_USER_PERMISSION | `admin`, `write`, `read` or `none`.
-CIRRUS_HTTP_CACHE_HOST | Host and port number on which [local HTTP cache](#http-cache) can be accessed on.
-GITHUB_CHECK_SUITE_ID | Monotonically increasing id of a corresponding [GitHub Check Suite](https://help.github.com/en/articles/about-status-checks#checks) which caused the Cirrus CI build.
-CIRRUS_ENV | Path to a file, by writing to which you can [set task-wide environment variables](tips-and-tricks.md#setting-environment-variables-from-scripts).
-CIRRUS_ENV_SENSITIVE | Set to `true` to mask all variable values written to the `CIRRUS_ENV` file in the console output
+| Name                       | Value / Description                                                                                                                                                                                                                                                                           |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CI                         | true                                                                                                                                                                                                                                                                                          |
+| CIRRUS_CI                  | true                                                                                                                                                                                                                                                                                          |
+| CI_NODE_INDEX              | Index of the current task within `CI_NODE_TOTAL` tasks                                                                                                                                                                                                                                        |
+| CI_NODE_TOTAL              | Total amount of unique tasks for a given `CIRRUS_BUILD_ID` build                                                                                                                                                                                                                              |
+| CONTINUOUS_INTEGRATION     | `true`                                                                                                                                                                                                                                                                                        |
+| CIRRUS_API_CREATED         | `true` if the current build was created through the [API](../api.md).                                                                                                                                                                                                                         |
+| CIRRUS_BASE_BRANCH         | Base branch name if current build was triggered by a PR. For example `master`                                                                                                                                                                                                                 |
+| CIRRUS_BASE_SHA            | Base SHA if current build was triggered by a PR                                                                                                                                                                                                                                               |
+| CIRRUS_BRANCH              | Branch name. For example `my-feature`                                                                                                                                                                                                                                                         |
+| CIRRUS_BUILD_ID            | Unique build ID                                                                                                                                                                                                                                                                               |
+| CIRRUS_CHANGE_IN_REPO      | Git SHA                                                                                                                                                                                                                                                                                       |
+| CIRRUS_CHANGE_MESSAGE      | Commit message or PR title and description, depending on trigger event (Non-PRs or PRs respectively).                                                                                                                                                                                         |
+| CIRRUS_CHANGE_TITLE        | First line of `CIRRUS_CHANGE_MESSAGE`                                                                                                                                                                                                                                                         |
+| CIRRUS_CPU                 | Amount of CPUs requested by the task. `CIRRUS_CPU` value is integer and rounded up for tasks that requested non-interger amount of CPUs.                                                                                                                                                      |
+| CIRRUS_CRON                | [Cron Build](#cron-builds) name configured in the repository settings if this build was triggered by Cron. For example, `nightly`.                                                                                                                                                            |
+| CIRRUS_DEFAULT_BRANCH      | Default repository branch name. For example `master`                                                                                                                                                                                                                                          |
+| CIRRUS_DOCKER_CONTEXT      | Docker build's context directory to use for [Dockerfile as a CI environment](docker-builder-vm.md#dockerfile-as-a-ci-environment). Defaults to project's root directory.                                                                                                                      |
+| CIRRUS_LAST_GREEN_BUILD_ID | The build id of the last successful build on the same branch at the time of the current build creation.                                                                                                                                                                                       |
+| CIRRUS_LAST_GREEN_CHANGE   | Corresponding to `CIRRUS_LAST_GREEN_BUILD_ID` SHA (used in [`changesInclude`](#supported-functions) and [`changesIncludeOnly`](#supported-functions) functions).                                                                                                                              |
+| CIRRUS_PR                  | PR number if current build was triggered by a PR. For example `239`.                                                                                                                                                                                                                          |
+| CIRRUS_PR_DRAFT            | `true` if current build was triggered by a Draft PR.                                                                                                                                                                                                                                          |
+| CIRRUS_PR_TITLE            | Title of a corresponding PR if any.                                                                                                                                                                                                                                                           |
+| CIRRUS_PR_BODY             | Body of a corresponding PR if any.                                                                                                                                                                                                                                                            |
+| CIRRUS_PR_LABELS           | comma separated list of PR's labels if current build was triggered by a PR.                                                                                                                                                                                                                   |
+| CIRRUS_TAG                 | Tag name if current build was triggered by a new tag. For example `v1.0`                                                                                                                                                                                                                      |
+| CIRRUS_OIDC_TOKEN          | OpenID Connect Token issued by `https://oidc.cirrus-ci.com` with audience set to `https://cirrus-ci.com/github/$CIRRUS_REPO_OWNER` (can be changed via `$CIRRUS_OIDC_TOKEN_AUDIENCE`). Please refer to a [dedicated section below](#internals-of-openid-connect-tokens) for in-depth details. |
+| CIRRUS_OS, OS              | Host OS. Either `linux`, `windows` or `darwin`.                                                                                                                                                                                                                                               |
+| CIRRUS_TASK_NAME           | Task name                                                                                                                                                                                                                                                                                     |
+| CIRRUS_TASK_NAME_ALIAS     | Task name `alias` if any.                                                                                                                                                                                                                                                                     |
+| CIRRUS_TASK_ID             | Unique task ID                                                                                                                                                                                                                                                                                |
+| CIRRUS_RELEASE             | GitHub Release id if current tag was created for a release. Handy for [uploading release assets](../examples.md#release-assets).                                                                                                                                                              |
+| CIRRUS_REPO_CLONE_TOKEN    | Temporary GitHub access token to perform a clone.                                                                                                                                                                                                                                             |
+| CIRRUS_REPO_NAME           | Repository name. For example `my-project`                                                                                                                                                                                                                                                     |
+| CIRRUS_REPO_OWNER          | Repository owner (an organization or a user). For example `my-organization`                                                                                                                                                                                                                   |
+| CIRRUS_REPO_FULL_NAME      | Repository full name/slug. For example `my-organization/my-project`                                                                                                                                                                                                                           |
+| CIRRUS_REPO_CLONE_URL      | URL used for cloning. For example `https://github.com/my-organization/my-project.git`                                                                                                                                                                                                         |
+| CIRRUS_USER_COLLABORATOR   | `true` if a user initialized a build is already a contributor to the repository. `false` otherwise.                                                                                                                                                                                           |
+| CIRRUS_USER_PERMISSION     | `admin`, `write`, `read` or `none`.                                                                                                                                                                                                                                                           |
+| CIRRUS_HTTP_CACHE_HOST     | Host and port number on which [local HTTP cache](#http-cache) can be accessed on.                                                                                                                                                                                                             |
+| GITHUB_CHECK_SUITE_ID      | Monotonically increasing id of a corresponding [GitHub Check Suite](https://help.github.com/en/articles/about-status-checks#checks) which caused the Cirrus CI build.                                                                                                                         |
+| CIRRUS_ENV                 | Path to a file, by writing to which you can [set task-wide environment variables](tips-and-tricks.md#setting-environment-variables-from-scripts).                                                                                                                                             |
+| CIRRUS_ENV_SENSITIVE       | Set to `true` to mask all variable values written to the `CIRRUS_ENV` file in the console output                                                                                                                                                                                              |
 
 ### Behavioral Environment Variables
 
